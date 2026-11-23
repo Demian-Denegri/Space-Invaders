@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SpaceInvader
+﻿namespace SpaceInvader
 {
     abstract class Nave
     {

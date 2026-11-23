@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SpaceInvader
+﻿namespace SpaceInvader
 {
     internal class NaveDefensora : Nave
     {
@@ -16,14 +12,31 @@ namespace SpaceInvader
         }
         public void MoverIzquierda()
         {
-            this.X--;
+            if (this.X > 3)
+            {
+                this.X--;
+            }
+
         }
         public void MoverDerecha()
         {
-            this.X++;
+            if (this.X < Console.WindowWidth - 3)
+            {
+                this.X++;
+            }
+
         }
-        public void Disparara()
+        public NaveProyectil Disparar()
         {
+            NaveProyectil naveProyectil = new(this.X, this.Y - 1, true);// ture apra que suba el proyectil
+            return naveProyectil;
+        }
+        public void Muerte(int proyectilX, int proyectilY)
+        {
+            if ((proyectilX == this.X) && (proyectilY == this.Y))
+            {
+                throw new Exception("error");
+            }
 
         }
 

@@ -31,12 +31,11 @@
         }
         public static void borrarProyectil(List<NaveProyectil> proyectiles, int ultimaFila) // borra de la lista los proyectiles que exeden el tamaño de pantalla
         {
-            for (int i = 0; i < proyectiles.Count; i++)// borrar proyectiles que no dieron a nada
+            for (int i = proyectiles.Count - 1; i >= 0; i--)// borrar proyectiles que no dieron a nada
             {
                 if (proyectiles[i].Y == 0 || proyectiles[i].Y == ultimaFila)
                 {
-                    Console.SetCursorPosition(proyectiles[i].X, proyectiles[i].Y);
-                    Console.Write(' ');
+                    proyectiles[i].Borrar();
                     proyectiles.RemoveAt(i);
                 }
 

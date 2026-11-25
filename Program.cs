@@ -9,7 +9,7 @@ int filas = 20;
 NaveInvasora.CrearInvasoras(invasoras, columnas, filas);//creo el ggrupo de naves
 int cuadros = 30;
 int fpsInvasora = 80;
-int fpsProyectiles = 5;
+int fpsProyectiles = 80;
 int ultimaFila = Console.WindowHeight - 1;
 while (!salir)
 {
@@ -18,14 +18,14 @@ while (!salir)
     NaveInvasora.Direccion(invasoras);
     if ((cuadros % fpsInvasora) == 0)//fps de movimiento de las naves invasoras
     {
-        for (int i = 1; i < invasoras.Count; i++)//recorro lista de navesInvasoras
+        for (int i = 0; i < invasoras.Count; i++)//recorro lista de navesInvasoras
         {
             invasoras[i].Mover();//muestro y muevo naves invasoras
 
             Random random = new();
             int num = random.Next(1, 50);
-            int dispara = num % 2;
-            if ((invasoras[i].Y + invasoras[i].X) > (invasoras[i - 1].Y + invasoras[i - 1].X) && dispara == 0)// si es num par disparo, sino no;
+            int dispara = num % 15;
+            if ((!invasoras[i].TieneAliadaAbajo(invasoras) && dispara == 0))// condicion para cuando se dispara o no
             {
                 proyectiles.Add(invasoras[i].Disparar());//disparo individual
             }

@@ -60,6 +60,11 @@
 
             Imprimir();
         }
+        public bool TieneAliadaAbajo(List<NaveInvasora> invasoras)//logica que comprueva si hay un aliado debajo de una invasora
+        {
+            return invasoras.Any(inv => inv.X == this.X && (inv.Y > this.Y));
+
+        }
         public NaveProyectil Disparar()
         {
             NaveProyectil naveProyectil = new(this.X, this.Y + 1, false);//false apra que baje el proyectil
@@ -71,11 +76,16 @@
             {
                 for (int j = 0; j < proyectiles.Count; j++)
                 {
-                    if (proyectiles[j].X == invasoras[i].X &&
+
+                    if (proyectiles[j].direccion == true &&
+                        proyectiles[j].X == invasoras[i].X &&
                         proyectiles[j].Y == invasoras[i].Y)
                     {
+                        invasoras[i].Borrar();
                         invasoras.RemoveAt(i);
+                        proyectiles[j].Borrar();
                         proyectiles.RemoveAt(j); // remuevo el proyectil que dio el impacto
+                        break;
                     }
                 }
             }
